@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks Condition="'$(NET10_SDK)' == 'true'">net5.0;net8.0;net10.0</TargetFrameworks>
+    <TargetFrameworks Condition="'$(TargetFrameworks)' == ''">net5.0;net8.0</TargetFrameworks>
+    <RootNamespace>Tum.Quantum</RootNamespace>
+    <AssemblyName>Tum.Quantum</AssemblyName>
+    <PackageId>Tum.Quantum</PackageId>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <VersionPrefix>1.0.0</VersionPrefix>
+    <Authors>Pasit Tum</Authors>
+    <Company>TUMQuantum Co., Ltd.</Company>
+    <Product>TUMQuantum Research Lab &amp; Post-Quantum Cryptography Engine</Product>
+    <Description>NIST FIPS 203 (ML-KEM Kyber) and NIST FIPS 204 (ML-DSA Dilithium) Post-Quantum Cryptography Engine, Sovereign Lattice Verification, and Hybrid Classical-PQC Migration Adapter (.NET 5, .NET 8 &amp; .NET 10).</Description>
+    <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net5.0'">
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.0" />
+  </ItemGroup>
+
+</Project>
