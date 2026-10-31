@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tum.Quantum", "Tum.Quantum.csproj", "{CBBBFB85-6584-4965-A34B-6C6B697469EF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tum.Quantum.Tests", "Tests\Tum.Quantum.Tests.csproj", "{4BDFDAA1-56EC-41AB-99AB-3C850980FD7A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{CBBBFB85-6584-4965-A34B-6C6B697469EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBBBFB85-6584-4965-A34B-6C6B697469EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBBBFB85-6584-4965-A34B-6C6B697469EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BDFDAA1-56EC-41AB-99AB-3C850980FD7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BDFDAA1-56EC-41AB-99AB-3C850980FD7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BDFDAA1-56EC-41AB-99AB-3C850980FD7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BDFDAA1-56EC-41AB-99AB-3C850980FD7A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

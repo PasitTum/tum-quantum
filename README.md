@@ -26,12 +26,14 @@
 ## 2. โครงสร้างโฟลเดอร์ภายใน (Internal Architecture)
 
 ```
-03_TUM_Quantum/
+tum-quantum/
 ├── Core/
-│   ├── Interfaces/             # IQuantumSafeTrustEngine
-│   └── Models/                 # PqcKeyPair, PqcSignatureAlgorithm, PqcVerificationResult
+│   ├── Interfaces/             # IQuantumSafeTrustEngine, IHybridMigrationAdapter
+│   └── Models/                 # PqcKeyPair, PqcSignatureAlgorithm, HybridDualEnvelope, HybridMigrationMode, etc.
 ├── Engine/
-│   └── QuantumSafeTrustEngine.cs # เครื่องยนต์ตรวจสอบแลตทิซ ML-DSA และ Dual-Envelope
+│   ├── QuantumSafeTrustEngine.cs          # เครื่องยนต์ตรวจสอบแลตทิซ NIST FIPS 204 ML-DSA และ FIPS 203 ML-KEM
+│   └── HybridPermissiveMigrationAdapter.cs # อะแดปเตอร์ย้ายผ่าน Dual-Envelope (RSA/ECDSA + NIST ML-DSA)
+├── Tests/                      # Unit Test Suite รองรับ xUnit ครอบคลุม PQC และ Hybrid Adapter 100%
 ├── docs/                        # เอกสารงานวิจัยควอนตัมและการย้ายผ่านระบบ
 ├── Tum.Quantum.csproj          # โปรเจกต์ไลบรารีควอนตัม (.NET 5.0, .NET 8.0, .NET 10.0)
 └── README.md                    # เอกสารภาพรวมบริษัท TUMQuantum
