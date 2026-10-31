@@ -1,4 +1,4 @@
-﻿# TUM Group โ€” Git Flow Branching & Release Strategy
+# TUM Group — Git Flow Branching & Release Strategy
 
 This repository strictly enforces the **Git Flow** workflow adapted for TUM Group's enterprise sovereign identity, quantum resilience, cyber telemetry, and governance ecosystems.
 
@@ -8,12 +8,12 @@ This repository strictly enforces the **Git Flow** workflow adapted for TUM Grou
 
 | Branch | Lifecycle | Source | Merges Into | Purpose | Direct Commit Allowed? |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| main | Permanent | - | - | Production-ready, signed tags (X.Y.Z). Only merges from elease/* and hotfix/*. | โ **Strictly Prohibited** |
-| develop | Permanent | main | main (via release) | Primary integration branch for active development. Nightly builds & test suites. | โ **PR / Merge Only** |
-| eature/* | Ephemeral | develop | develop | New capabilities, providers, components. Format: eature/<ticket-key>-<short-description> | โ… Allowed by Feature Owner |
-| elease/* | Ephemeral | develop | main & develop | Release stabilization, version bumps, release notes. Format: elease/v<version> | โ… Fixes only |
-| hotfix/* | Ephemeral | main | main & develop | Critical production bug fixes. Format: hotfix/<ticket-key>-<short-description> | โ… Hotfix Owner |
-| ugfix/* | Ephemeral | develop | develop | Non-critical bug fixes during development. Format: ugfix/<ticket-key>-<description> | โ… Bugfix Owner |
+| `main` | Permanent | - | - | Production-ready, signed tags (`vX.Y.Z`). Only merges from `release/*` and `hotfix/*`. | ❌ **Strictly Prohibited** |
+| `develop` | Permanent | `main` | `main` (via release) | Primary integration branch for active development. Nightly builds & test suites. | ❌ **PR / Merge Only** |
+| `feature/*` | Ephemeral | `develop` | `develop` | New capabilities, providers, components. Format: `feature/<ticket-key>-<short-description>` | ✅ Allowed by Feature Owner |
+| `release/*` | Ephemeral | `develop` | `main` & `develop` | Release stabilization, version bumps, release notes. Format: `release/v<version>` | ✅ Fixes only |
+| `hotfix/*` | Ephemeral | `main` | `main` & `develop` | Critical production bug fixes. Format: `hotfix/<ticket-key>-<short-description>` | ✅ Hotfix Owner |
+| `bugfix/*` | Ephemeral | `develop` | `develop` | Non-critical bug fixes during development. Format: `bugfix/<ticket-key>-<description>` | ✅ Bugfix Owner |
 
 ---
 
@@ -21,19 +21,19 @@ This repository strictly enforces the **Git Flow** workflow adapted for TUM Grou
 
 All branch names must include the Jira Issue Key or GitHub Issue number where applicable:
 
-- **Features**: eature/SCRUM-123-oauth-pkce-hardening
-- **Releases**: elease/v1.2.0
-- **Hotfixes**: hotfix/SCRUM-124-null-pointer-token-validator
-- **Bugfixes**: ugfix/SCRUM-125-fix-pcsc-reader-timeout
+- **Features**: `feature/SCRUM-123-oauth-pkce-hardening`
+- **Releases**: `release/v1.2.0`
+- **Hotfixes**: `hotfix/SCRUM-124-null-pointer-token-validator`
+- **Bugfixes**: `bugfix/SCRUM-125-fix-pcsc-reader-timeout`
 
 ---
 
 ## 3. Git Flow CLI Quick Reference
 
-This repository is pre-configured for git-flow (AVH Edition):
+This repository is pre-configured for `git-flow` (AVH Edition):
 
 ### Starting & Finishing a Feature
-`ash
+```bash
 # 1. Start feature from develop
 git flow feature start SCRUM-123-new-provider
 
@@ -42,10 +42,10 @@ git commit -m "feat(provider): add sovereign trust anchor connector"
 
 # 3. Finish feature (merges into develop, deletes feature branch)
 git flow feature finish SCRUM-123-new-provider
-`
+```
 
 ### Preparing a Release
-`ash
+```bash
 # 1. Start release from develop
 git flow release start v1.2.0
 
@@ -54,10 +54,10 @@ git flow release start v1.2.0
 
 # 3. Finish release (merges into main with tag, merges back to develop)
 git flow release finish v1.2.0
-`
+```
 
 ### Production Emergency Hotfix
-`ash
+```bash
 # 1. Start hotfix from main
 git flow hotfix start SCRUM-124-critical-security-patch
 
@@ -66,16 +66,16 @@ git commit -m "security(core): patch token audience bypass"
 
 # 3. Finish hotfix (merges into main with tag, and back into develop)
 git flow hotfix finish SCRUM-124-critical-security-patch
-`
+```
 
 ---
 
 ## 4. Orca & Multi-Project Integration
 
 In the Orca multi-project orchestrator:
-- The default base ref for all worktrees is set to develop (efs/heads/develop).
+- The default base ref for all worktrees is set to `develop` (`refs/heads/develop`).
 - When launching new agent sessions or creating worktrees:
-  `ash
+  ```bash
   orca worktree create --repo <repo> --name feature-scrum-123 --agent antigravity --prompt "Implement ..."
-  `
-- **Autonomous Jira & GitHub Sync**: Every feature branch and PR MUST reference the matching Jira Issue (SCRUM-XX) and GitHub Issue.
+  ```
+- **Autonomous Jira & GitHub Sync**: Every feature branch and PR MUST reference the matching Jira Issue (`SCRUM-XX`) and GitHub Issue.
