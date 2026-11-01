@@ -1,0 +1,35 @@
+name: TUM Quantum Cryptography Engine CI/CD
+
+on:
+  push:
+    branches: [ main, develop, 'feature/**', 'release/**' ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build-and-test:
+    name: Build & Test (Multi-Target .NET 5.0 / 8.0)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDKs
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            5.0.x
+            8.0.x
+
+      - name: Restore Dependencies
+        run: dotnet restore Tum.Quantum.sln
+
+      - name: Build Solution (Release Mode)
+        run: dotnet build Tum.Quantum.sln -c Release --no-restore
+
+      - name: Execute Automated PQC Lattice & Assertion Tests
+        run: dotnet test Tum.Quantum.sln -c Release --no-build --verbosity normal
+
+      - name: Pack NuGet Package
+        run: dotnet pack Tum.Quantum.csproj -c Release --no-build -o artifacts/nuget
