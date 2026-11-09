@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Legacy App - Protected by TUM-Quantum</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #0b0f19; color: #f3f4f6; margin: 0; padding: 40px 20px; }
+        .container { max-width: 900px; margin: 0 auto; background: #111827; border: 1px solid #1f2937; border-radius: 12px; padding: 32px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); }
+        .badge { display: inline-block; padding: 4px 12px; border-radius: 9999px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; background: #065f46; color: #34d399; }
+        h1 { margin-top: 16px; font-size: 28px; color: #ffffff; }
+        p { color: #9ca3af; line-height: 1.6; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+        .card { background: #1f2937; border-radius: 8px; padding: 20px; border-left: 4px solid #10b981; }
+        .card h3 { margin: 0 0 8px 0; font-size: 14px; color: #9ca3af; text-transform: uppercase; }
+        .card p { margin: 0; font-size: 18px; font-weight: 600; color: #10b981; font-family: monospace; }
+        .terminal { background: #030712; border: 1px solid #374151; border-radius: 8px; padding: 16px; margin-top: 24px; font-family: 'Courier New', Courier, monospace; font-size: 13px; color: #a7f3d0; overflow-x: auto; }
+        .footer { margin-top: 32px; text-align: center; color: #6b7280; font-size: 13px; border-top: 1px solid #1f2937; padding-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <span class="badge">Quantum Immunity Active 🛡️</span>
+        <h1>TUM Enterprise Core Banking &amp; Services Portal</h1>
+        <p>This legacy application server (running Nginx/IIS/Apache on private upstream network) is operating with <strong>Zero Code Changes</strong>. All ingress client traffic is transparently fortified against Cryptanalytically Relevant Quantum Computers (CRQC) and Harvest-Now-Decrypt-Later (HNDL) attacks via the <strong>TUM-Quantum Reverse Proxy Gateway</strong>.</p>
+
+        <div class="grid">
+            <div class="card">
+                <h3>Post-Quantum TLS Handshake</h3>
+                <p>RFC 8446 / X25519MLKEM768</p>
+            </div>
+            <div class="card">
+                <h3>KEM Standard</h3>
+                <p>NIST FIPS 203 (ML-KEM-768)</p>
+            </div>
+            <div class="card">
+                <h3>Digital Signature Scheme</h3>
+                <p>NIST FIPS 204 (ML-DSA-65)</p>
+            </div>
+            <div class="card">
+                <h3>Side-Channel Status</h3>
+                <p>Constant-Time Verified (DudeCT |t| &lt; 4.5)</p>
+            </div>
+        </div>
+
+        <div class="terminal">
+            <strong>Injected Upstream Telemetry Headers (Inspected by Legacy App):</strong><br><br>
+            X-Quantum-Safe: true<br>
+            X-PQC-Key-Exchange: x25519_mlkem768<br>
+            X-PQC-Cipher-Suite: TLS_AES_256_GCM_SHA384<br>
+            X-PQC-Protocol: TLSv1.3<br>
+            X-PQC-Security-Bits: 192<br>
+            X-PQC-Gateway: TUM-Quantum-Gateway/1.0 (NIST FIPS 203/204)
+        </div>
+
+        <div class="footer">
+            TUMQuantum Co., Ltd. &copy; 2026 TUM Group Holdings. All rights reserved. Sovereign Deep-Tech Cryptography.
+        </div>
+    </div>
+</body>
+</html>

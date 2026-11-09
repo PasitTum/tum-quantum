@@ -325,15 +325,20 @@ namespace Tum.Trust.Security.Infrastructure.Security
                 return false;
             }
 
-            // Check signature header tag
+            // Check signature header tag using constant-time comparison
             byte[] expectedHeader = Encoding.ASCII.GetBytes($"TUM-SIG:{algorithm}:");
-            int checkLen = Math.Min(expectedHeader.Length, signature.Length);
-            for (int i = 0; i < checkLen; i++)
+            if (signature.Length < expectedHeader.Length)
             {
-                if (signature[i] != expectedHeader[i])
-                {
-                    return false;
-                }
+                return false;
+            }
+
+            bool headerMatches = CryptographicOperations.FixedTimeEquals(
+                signature.AsSpan(0, expectedHeader.Length),
+                expectedHeader.AsSpan());
+
+            if (!headerMatches)
+            {
+                return false;
             }
 
             // Verify payload digest against signature body
